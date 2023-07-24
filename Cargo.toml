@@ -44,6 +44,6 @@ rust-toolchain-version = "1.67.1"
 # CI backends to support (see 'cargo dist generate-ci')
 ci = ["github"]
 # The installers to generate for each app
-installers = ["powershell"]
+installers = []
 # Target platforms to build apps for (Rust target-triple syntax)
 targets = ["x86_64-pc-windows-msvc"]
