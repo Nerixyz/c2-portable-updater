@@ -48,3 +48,4 @@ ci = ["github"]
 installers = []
 # Target platforms to build apps for (Rust target-triple syntax)
 targets = ["x86_64-pc-windows-msvc"]
+checksum = "sha256"
