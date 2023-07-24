@@ -1,7 +1,7 @@
 # Chatterino Portable Updater
 
 This is a drop-in replacement for the original Chatterino portable updater on Windows that used WinForms.
-This updater doesn't have any runtime dependencies (not even the CRT) and has a similar size (about 260KiB) to the original updater.
+This updater doesn't have any runtime dependencies (not even the CRT) unlike original updater (depends on .NET runtime).
 
 ## Building
 
