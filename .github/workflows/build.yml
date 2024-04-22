@@ -2,9 +2,9 @@ name: Build
 
 on:
   push:
-    branches: ["master"]
+    branches: [master, main]
   pull_request:
-    branches: ["master"]
+    branches: [master, main]
 
 env:
   CARGO_TERM_COLOR: always
@@ -13,10 +13,13 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+          components: clippy
       - name: Rust cache
-        run: rustup toolchain install stable --profile minimal
-      - uses: Swatinem/rust-cache@v2
+        uses: Swatinem/rust-cache@v2
       - name: Build
         run: cargo build
       - name: Run clippy
