@@ -23,10 +23,6 @@ enum SwitchToCurrentDirError {
     SwitchDir(io::Error),
 }
 
-#[derive(Debug, thiserror::Error)]
-#[error("Failed to start Chatterino ({0})")]
-struct StartProcessError(io::Error);
-
 fn switch_to_exe_dir() -> Result<OsString, SwitchToCurrentDirError> {
     let mut exe_path =
         std::env::current_exe().map_err(SwitchToCurrentDirError::CannotGetExeName)?;

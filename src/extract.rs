@@ -65,7 +65,7 @@ pub fn extract(
         let name = file
             .enclosed_name()
             .ok_or_else(|| ExtractError::BadFilePath(file.name().to_owned()))?;
-        let stripped = strip_path(name);
+        let stripped = strip_path(&name);
 
         if stripped.as_os_str().is_empty() || stripped.starts_with(updater_dir) {
             continue; // skip the updater
