@@ -19,7 +19,7 @@ windows-sys = { version = "0.52.0", features = [
     "Win32_Security",
     "Win32_System_Diagnostics_Debug",
 ] }
-zip = { version = "1.1.2", default-features = false, features = [
+zip = { version = "1.1.4", default-features = false, features = [
     "deflate",
     "bzip2",
 ] }
