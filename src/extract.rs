@@ -1,8 +1,7 @@
 use std::{ffi::OsStr, io, path::Path, time::Duration};
 
-use widestring::U16CString;
 use win_msgbox::AbortRetryIgnore;
-use windows_sys::{w, Win32::Foundation::ERROR_SHARING_VIOLATION};
+use windows_sys::Win32::Foundation::ERROR_SHARING_VIOLATION;
 use zip::read::ZipFile;
 
 pub struct Args<'a> {
@@ -87,11 +86,10 @@ fn process_file_retrying<'a>(file: &mut ZipFile, path: &Path) -> Result<(), Extr
         let Err(e) = process_file_backoff(file, path) else {
             break Ok(());
         };
-        let error_message = format!("Failed to install '{}':\n{e}", path.to_string_lossy());
-        let u16str = U16CString::from_str_truncate(error_message);
 
-        match win_msgbox::warning::<AbortRetryIgnore>(u16str.as_ptr())
-            .title(w!("Chatterino Updater"))
+        let error = format!("Failed to install '{}':\n{e}", path.to_string_lossy());
+        match win_msgbox::warning::<AbortRetryIgnore>(&error)
+            .title("Chatterino Updater")
             .show()
         {
             Ok(AbortRetryIgnore::Abort) => break Err(ExtractError::Aborted),
