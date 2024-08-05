@@ -13,13 +13,13 @@ categories = ["command-line-utilities"]
 thiserror = "1.0.63"
 widestring = "1.1.0"
 win-msgbox = "0.2.0"
-windows-sys = { version = "0.52.0", features = [
+windows-sys = { version = "0.59.0", features = [
     "Win32_System_Threading",
     "Win32_Foundation",
     "Win32_Security",
     "Win32_System_Diagnostics_Debug",
 ] }
-zip = { version = "2.1.5", default-features = false, features = [
+zip = { version = "2.1.6", default-features = false, features = [
     "deflate",
     "bzip2",
 ] }
