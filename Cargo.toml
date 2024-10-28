@@ -10,7 +10,7 @@ keywords = ["cli"]
 categories = ["command-line-utilities"]
 
 [dependencies]
-thiserror = "1.0.64"
+thiserror = "1.0.65"
 widestring = "1.1.0"
 win-msgbox = "0.2.1"
 windows-sys = { version = "0.59.0", features = [
