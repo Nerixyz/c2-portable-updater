@@ -1,4 +1,5 @@
 #![deny(clippy::cargo)]
+#![allow(clippy::multiple_crate_versions)]
 
 use extract::extract;
 use result::ResultExt;
