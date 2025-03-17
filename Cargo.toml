@@ -11,7 +11,7 @@ categories = ["command-line-utilities"]
 
 [dependencies]
 thiserror = "2.0.12"
-widestring = "1.1.0"
+widestring = "1.2.0"
 win-msgbox = "0.2.1"
 windows-sys = { version = "0.59.0", features = [
     "Win32_System_Threading",
@@ -19,7 +19,7 @@ windows-sys = { version = "0.59.0", features = [
     "Win32_Security",
     "Win32_System_Diagnostics_Debug",
 ] }
-zip = { version = "2.2.3", default-features = false, features = [
+zip = { version = "2.3.0", default-features = false, features = [
     "deflate",
     "bzip2",
 ] }
