@@ -35,18 +35,3 @@ codegen-units = 1
 inherits = "release"
 lto = "fat"
 codegen-units = 1
-
-# Config for 'cargo dist'
-[workspace.metadata.dist]
-# The preferred cargo-dist version to use in CI (Cargo.toml SemVer syntax)
-cargo-dist-version = "0.13.2"
-# CI backends to support
-ci = ["github"]
-# The installers to generate for each app
-installers = []
-# Target platforms to build apps for (Rust target-triple syntax)
-targets = ["x86_64-pc-windows-msvc"]
-# Checksums to generate for each App
-checksum = "sha256"
-# Publish jobs to run in CI
-pr-run-mode = "plan"
