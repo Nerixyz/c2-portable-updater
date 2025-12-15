@@ -7,7 +7,6 @@ pub trait ResultExt<T> {
 }
 
 impl<T, E: Display> ResultExt<T> for Result<T, E> {
-    #[must_use]
     fn error_and_exit(self) -> T {
         match self {
             Ok(r) => r,
