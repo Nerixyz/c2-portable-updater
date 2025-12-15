@@ -1,4 +1,9 @@
-use std::{ffi::OsStr, io, path::Path, time::Duration};
+use std::{
+    ffi::OsStr,
+    io::{self, Read},
+    path::Path,
+    time::Duration,
+};
 
 use win_msgbox::AbortRetryIgnore;
 use windows_sys::Win32::Foundation::ERROR_SHARING_VIOLATION;
@@ -81,7 +86,10 @@ fn strip_path(path: &Path) -> &Path {
     path.strip_prefix("Chatterino2/").unwrap_or(path)
 }
 
-fn process_file_retrying<'a>(file: &mut ZipFile, path: &Path) -> Result<(), ExtractError<'a>> {
+fn process_file_retrying<'a, R: Read>(
+    file: &mut ZipFile<R>,
+    path: &Path,
+) -> Result<(), ExtractError<'a>> {
     loop {
         let Err(e) = process_file_backoff(file, path) else {
             break Ok(());
@@ -106,7 +114,10 @@ fn process_file_retrying<'a>(file: &mut ZipFile, path: &Path) -> Result<(), Extr
 /// Tries to extract a single file.
 /// If the extraction fails with `ERROR_SHARING_VIOLATION` (32),
 /// then the operation is retried after a backoff.
-fn process_file_backoff(file: &mut ZipFile, path: &Path) -> Result<(), ProcessFileError> {
+fn process_file_backoff<R: Read>(
+    file: &mut ZipFile<R>,
+    path: &Path,
+) -> Result<(), ProcessFileError> {
     let mut backoff = 1u64 << 8;
     loop {
         match process_file(file, path) {
@@ -121,7 +132,7 @@ fn process_file_backoff(file: &mut ZipFile, path: &Path) -> Result<(), ProcessFi
 }
 
 /// Extracts the `file` to `path`.
-fn process_file(file: &mut ZipFile, path: &Path) -> Result<(), ProcessFileError> {
+fn process_file<R: Read>(file: &mut ZipFile<R>, path: &Path) -> Result<(), ProcessFileError> {
     if file.is_dir() {
         if path.exists() {
             if path.is_dir() {
