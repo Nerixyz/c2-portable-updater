@@ -10,7 +10,7 @@ keywords = ["cli"]
 categories = ["command-line-utilities"]
 
 [dependencies]
-thiserror = "2.0.17"
+thiserror = "2.0.18"
 widestring = "1.2.1"
 win-msgbox = "0.2.1"
 windows-sys = { version = "0.61.2", features = [
@@ -19,7 +19,7 @@ windows-sys = { version = "0.61.2", features = [
     "Win32_Security",
     "Win32_System_Diagnostics_Debug",
 ] }
-zip = { version = "7.0.0", default-features = false, features = [
+zip = { version = "7.2.0", default-features = false, features = [
     "deflate",
     "bzip2",
 ] }
